@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckv0oeyw3c2o7"]
+
+[ext_resource type="Texture2D" uid="uid://cvloyjjmu7vv2" path="res://sprites/shop/category-yellow_closed.png" id="1_q5cp3"]
+[ext_resource type="Texture2D" uid="uid://b5f8vqkn1asb7" path="res://sprites/shop/category-yellow_open.png" id="2_jx0q0"]
+[ext_resource type="Script" path="res://scenes/bottom/category_button.gd" id="3_oxasr"]
+[ext_resource type="Texture2D" uid="uid://c06bk3klll0wx" path="res://sprites/icons/potion.png" id="4_yffwx"]
+[ext_resource type="AudioStream" uid="uid://b3e2urkuym0d5" path="res://sounds/button_select.wav" id="5_wm0f8"]
+[ext_resource type="AudioStream" uid="uid://dr6or5c07wnb5" path="res://sounds/button_unselect.wav" id="6_uphqq"]
+
+[node name="Category_button" type="TextureButton"]
+offset_right = 60.0
+offset_bottom = 33.0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = ExtResource("1_q5cp3")
+texture_pressed = ExtResource("2_jx0q0")
+script = ExtResource("3_oxasr")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 11.0
+offset_right = 531.0
+offset_bottom = 523.0
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("4_yffwx")
+
+[node name="SoundSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wm0f8")
+bus = &"Sounds"
+
+[node name="SoundUnselect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_uphqq")
+bus = &"Sounds"

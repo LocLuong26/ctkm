@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://dv6j7d1wb4lp8"]
+
+[ext_resource type="Texture2D" uid="uid://2qkltni53yls" path="res://sprites/shop/button-green.png" id="1_1kpuc"]
+[ext_resource type="Texture2D" uid="uid://cwqekda54104m" path="res://sprites/shop/button-green-pressed.png" id="2_kfpn4"]
+[ext_resource type="Texture2D" uid="uid://c6yy4iwyt684a" path="res://sprites/shop/button-disabled.png" id="3_0rjeu"]
+[ext_resource type="Script" path="res://scenes/bottom/item.gd" id="4_dx3o4"]
+[ext_resource type="FontFile" uid="uid://kr3d464f7640" path="res://NineteenNinetySix-lWzq.ttf" id="5_20twl"]
+[ext_resource type="LabelSettings" uid="uid://cpuux455m0mhe" path="res://font.tres" id="6_mtfhp"]
+[ext_resource type="Texture2D" uid="uid://dsurnabs8anjd" path="res://sprites/icons/coin.png" id="7_qq4lu"]
+[ext_resource type="AudioStream" uid="uid://dww8fe3s7pdq2" path="res://sounds/item_bought.wav" id="8_rrp7t"]
+[ext_resource type="Texture2D" uid="uid://ivrqd0p61fog" path="res://sprites/shop/button-small.png" id="8_y3pik"]
+[ext_resource type="Texture2D" uid="uid://co46pbec0dv3s" path="res://sprites/shop/button-small-pressed.png" id="9_epjln"]
+[ext_resource type="AudioStream" uid="uid://bfmwnsibtnumn" path="res://sounds/sword_equip.wav" id="11_rlf4w"]
+[ext_resource type="AudioStream" uid="uid://cqxnfr8f58r2w" path="res://sounds/sword_unequip.wav" id="12_381tj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ltf2n"]
+line_spacing = 2.0
+font = ExtResource("5_20twl")
+font_size = 20
+
+[node name="Item" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+keep_pressed_outside = true
+texture_normal = ExtResource("1_1kpuc")
+texture_pressed = ExtResource("2_kfpn4")
+texture_disabled = ExtResource("3_0rjeu")
+script = ExtResource("4_dx3o4")
+
+[node name="Progress" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 65.0
+mouse_filter = 1
+value = 50.0
+show_percentage = false
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 31.0
+text = "Item"
+label_settings = SubResource("LabelSettings_ltf2n")
+
+[node name="Price" type="Label" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 31.0
+offset_right = 165.0
+offset_bottom = 54.0
+text = "Price"
+label_settings = ExtResource("6_mtfhp")
+
+[node name="GoldSprite" type="Sprite2D" parent="."]
+position = Vector2(177, 38)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("7_qq4lu")
+
+[node name="Stats" type="Label" parent="."]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 10.0
+offset_right = 655.0
+offset_bottom = 33.0
+text = "Some stats"
+label_settings = ExtResource("6_mtfhp")
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 93.0
+offset_right = 359.0
+offset_bottom = 197.0
+text = "The item's epic description!"
+label_settings = ExtResource("6_mtfhp")
+
+[node name="SoundBuy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rrp7t")
+bus = &"Sounds"
+
+[node name="Equip" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_right = 440.0
+offset_bottom = 65.0
+mouse_default_cursor_shape = 2
+keep_pressed_outside = true
+texture_normal = ExtResource("8_y3pik")
+texture_pressed = ExtResource("9_epjln")
+texture_disabled = ExtResource("3_0rjeu")
+
+[node name="Action" type="Label" parent="Equip"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 115.0
+offset_bottom = 41.0
+text = "equip?!!"
+label_settings = SubResource("LabelSettings_ltf2n")
+
+[node name="SoundEquip" type="AudioStreamPlayer" parent="Equip"]
+stream = ExtResource("11_rlf4w")
+volume_db = -4.0
+bus = &"Sounds"
+
+[node name="SoundUnequip" type="AudioStreamPlayer" parent="Equip"]
+stream = ExtResource("12_381tj")
+volume_db = -4.0
+bus = &"Sounds"
+
+[connection signal="pressed" from="Equip" to="." method="_on_equip_pressed"]

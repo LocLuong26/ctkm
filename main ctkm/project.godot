@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Click to kill Monsters"
+config/description="Destroy the enemies with the power of clicks!"
+run/main_scene="res://scenes/game.tscn"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/show_image=false
+config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
+
+[autoload]
+
+PlayerVariables="*res://scenes/player_variables.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=720
+window/stretch/aspect="ignore"
+window/handheld/orientation=3
+window/vsync/vsync_mode=2
+
+[filesystem]
+
+import/blender/enabled=false
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
